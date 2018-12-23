@@ -5,6 +5,11 @@ import { PopoverController, ModalController, Platform, AlertController } from '@
 import { ModalComponent } from '../components/modal/modal.component';
 import { WpApiPosts } from 'wp-api-angular';
 
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase } from "angularfire2/database";
+
+import * as firebase from "firebase/app";
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -23,7 +28,12 @@ export class HomePage  implements OnInit {
   query:ProductQuery;
   wholeSale;
   
+  user: any = {};
+  url: any = "https://firebasestorage.googleapis.com/v0/b/bits-bites.appspot.com/o/sausage-flyer.png?alt=media&token=311b87f6-c75f-450d-93e0-a34ff55589cb";
   
+  // public file: any = {};
+  // public storageRef = firebase.storage();
+
   constructor(
         public activatedRoute: ActivatedRoute,
         private wooProducs: WoocommerceProductsService,
@@ -32,6 +42,8 @@ export class HomePage  implements OnInit {
         public plt: Platform,
         public alertController: AlertController,
         private wpApiPosts: WpApiPosts,
+        public af: AngularFireAuth,
+        public db: AngularFireDatabase,
         
       ) {
         // this.plt.ready().then(() => {
@@ -41,10 +53,25 @@ export class HomePage  implements OnInit {
         //     // fallback to browser APIs
         //   }
         // });
-        this.getWholeSaleProducts();
-        this.getFeaturedProducts();
+        // this.getWholeSaleProducts();
+        // this.getFeaturedProducts();
         // this.getPosts();
-       }
+    }
+    ngOnInit() {
+      if (this.af.auth.currentUser) {
+        this.db
+          .object("/users/" + this.af.auth.currentUser.uid)
+          .valueChanges()
+          .subscribe((res: any) => {
+            this.user = res;
+            this.user.image = res.image ? res.image : "";
+            this.url = res.image ? res.image : "https://firebasestorage.googleapis.com/v0/b/bits-bites.appspot.com/o/sausage-flyer.png?alt=media&token=311b87f6-c75f-450d-93e0-a34ff55589cb";
+          });
+      }
+    }  
+    isLoggedin() {
+      return localStorage.getItem("uid") != null;
+    }
     getPosts() {
         let headers = new Headers({
           'Content-Type': "text/html; charset=utf-8",
@@ -85,8 +112,7 @@ export class HomePage  implements OnInit {
         }
       );
     }
-    ngOnInit() {
-    }  
+    
       // POP AND MODAL
       async openModal(id) {
         const modal = await this.modalController.create({

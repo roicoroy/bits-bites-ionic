@@ -20,6 +20,14 @@
                     Home
               </ion-label>
             </ion-item>
+            
+            <ion-item button *ngIf="isLoggedin()" (click)="navigate('/home')">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-label>
+                      is LoggedIn (home)
+              </ion-label>
+            </ion-item>
+
 
             
             <!-- <ion-list-header>
