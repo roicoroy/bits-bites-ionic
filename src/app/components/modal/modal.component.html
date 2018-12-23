@@ -1,0 +1,20 @@
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-button expand="full" fill="clear" color="light" (click)="closeModal()">
+          Close
+        </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+      <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle> {{ product?.name }} </ion-card-subtitle>
+            <ion-card-title [innerHTML]='product?.description'></ion-card-title>
+          </ion-card-header>
+          <img src='{{ product?.images[0].src}}'/>
+          <ion-card-content>
+            {{product?.permalink}}
+          </ion-card-content>
+        </ion-card>
+  </ion-content>

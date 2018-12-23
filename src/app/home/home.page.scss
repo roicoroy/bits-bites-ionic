@@ -1,0 +1,25 @@
+
+    [default-background] {
+      height: 100%;
+      width: 100%;
+      display: table;
+    }
+  
+      a {
+        text-decoration: underline;
+        visibility: visible !important;
+        position: absolute;
+        bottom: 25px;
+        left: 25px;
+        right: 25px;
+        z-index: 999;
+      }
+      ion-icon {
+        font-size: 50px; //Preferred size here
+    }
+
+    footer, ion-icon{ 
+      font-size: 70px;
+    }
+  
+ 

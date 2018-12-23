@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "bits-bites-ionic",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

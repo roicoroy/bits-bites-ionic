@@ -1,0 +1,112 @@
+<ion-header>
+    <ion-toolbar color="secondary" text-center>
+      <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title text-center>{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid>
+        
+        <ion-row class='intro'>          
+            <ion-slides pager="true" [options]="slideOpts">
+                <ion-slide default-background>
+                        <img src="../../assets/coxinha-hd.png"/>
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+        
+        <ion-row class='map'>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2233.8761038443836!2d-3.1827863490255015!3d55.95151928402105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c78864708b7b%3A0x4096b79790456d1c!2s179a+Canongate%2C+Edinburgh+EH8+8BN!5e0!3m2!1sen!2suk!4v1542310532844" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </ion-row>
+      
+        <!-- <ion-row>
+            <ion-col>
+            </ion-col>
+        </ion-row> -->
+
+        <ion-row class='products'text-center>          
+          <ion-col size="12" size-md="12">
+            <h2>
+                Come and try our fresh salgados in Edinburgh city center
+            </h2>
+
+            <h4>
+                Fetured Products
+            </h4>
+            <img style="height:110px;" src="../../assets/market-1.jpg"/>
+            
+            <p>
+                179 Cannongate, Royal Mile 
+                EH8 8NB
+            </p>
+            
+            <ion-list text-center>                  
+              <ion-label>
+                We hope you will enjoy our Salgados
+              </ion-label>
+              <ion-item *ngFor="let item of products" (click)="openModal(item.id)">
+                <ion-thumbnail slot="start">
+                        <img src="{{ item?.images[0].src }}"/>
+                </ion-thumbnail>
+                  <ion-label>{{ item?.name }}</ion-label>
+              </ion-item>
+            </ion-list>  
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <h2>
+                Interested in buying whole sale? vitis our on-line shop on:
+                www.goiabeirascotland.com
+            </h2>        
+            <!-- <img height="200" src="../../assets/whole-sale-coxinhas.jpg"/>  -->
+            <h3>
+                Discover our whole sale range, min. order 50 units
+            </h3>
+        </ion-row>
+        
+        <ion-row class='whole-sale' text-center> 
+            <ion-col  size="6" *ngFor='let item of wholeSale'>
+                <img src="{{ item?.images[0].src }}"/>
+                <!-- <ion-label> {{ item?.name }} </ion-label> -->
+            </ion-col>
+        </ion-row>
+
+        <ion-row text-center align-items-stretch>
+            <ion-col size="6">
+                <img height="200" src="../../assets/coxinhas-banner-1.jpg"/> 
+            </ion-col>        
+            <ion-col size="6">
+                <img height="200" src="../../assets/risole-banner-1.jpg"/> 
+            </ion-col>
+        </ion-row>
+
+      </ion-grid>
+      
+      
+      
+      <ion-grid class='footer'>
+          <ion-row text-center>
+              <ion-col size="6">
+                  <ion-icon color='tertiary' name="logo-facebook"></ion-icon>
+              </ion-col>
+              <ion-col size="6">
+                  <ion-icon color='tertiary' name="call"></ion-icon>
+              </ion-col>
+          </ion-row>
+
+          <ion-row text-center>
+            <ion-toolbar color='tertiary'>
+                <ion-col size="12" class='copyright' text-center>
+                    roicoroy
+                </ion-col>
+            </ion-toolbar>
+          </ion-row>
+
+      </ion-grid>
+  </ion-content>
+  
